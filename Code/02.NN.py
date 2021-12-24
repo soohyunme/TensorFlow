@@ -14,6 +14,10 @@ from tensorflow.keras.datasets import mnist
 x_train = x_train.reshape(-1,28*28).astype("float32") / 255.0
 x_test = x_test.reshape(-1,28*28).astype("float32") / 255.0
 
+# Non nomalize
+x_train = x_train.reshape(-1,28*28).astype("float32") 
+x_test = x_test.reshape(-1,28*28).astype("float32") 
+
 # Sequential API (Very convenient, not very flexible)
 model = keras.Sequential(
     [
@@ -46,8 +50,10 @@ model = keras.Model(inputs=inputs, outputs=outputs)
 
 model.compile(
     loss=keras.losses.SparseCategoricalCrossentropy(from_logits=False),
-    #optimizer=keras.optimizers.Adam(lr=0.001),
-    optimizer = keras.optimizers.SGD(lr=0.001),
+    optimizer=keras.optimizers.Adam(lr=0.001),
+    # optimizer = keras.optimizers.SGD(lr=0.001), # Try SGD
+    # optimizer = keras.optimizers.Adagrad(lr=0.001), # Try Adagrad
+    # optimizer = keras.optimizers.RMSprop(lr=0.001), # Try RMSprop
     metrics=["accuracy"],
 )
 
@@ -67,7 +73,11 @@ Baseline = 0.9779
 for example Gradient Descent with Momentum, Adagrad, and RMSprop
 
 Use SGD in last model -> 0.9225
-
+Use Adagrad in last model -> 0.9401
+Use RMSprop in last model -> 0.9799
 
 3. Is there any difference if you remove the normalization of the data?
+normalize -> 0.9828
+Non normalize -> 0.9809
+
 '''
