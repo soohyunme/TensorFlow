@@ -53,6 +53,7 @@ def image_grid(data, labels, class_names):
           plt.imshow(data[i])
 
     return figure
+<<<<<<< HEAD
 
 def get_confusion_matrix(y_labels, logits, class_names):
     preds = np.argmax(logits, axis=1)
@@ -91,3 +92,5 @@ def plot_confusion_matrix(cm, class_names):
     cm_image = plot_to_image(figure)
 
     return cm_image
+=======
+>>>>>>> e003dbad343375ac3a5f9042a1574a39b2da60ef
